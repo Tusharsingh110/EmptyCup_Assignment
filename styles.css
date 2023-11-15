@@ -12,7 +12,7 @@
 hr {
     display: block;
     border: 0;
-    border-top: 0.01em solid #d0d0d0;
+    border-top: 0.01em solid #d7d7d7;
     padding: 0;
 }
 ul {
@@ -32,7 +32,6 @@ button{
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    color: #716966;
     font-size: 24px;
 }
 .nav_bar{
