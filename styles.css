@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Chivo', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+hr {
+    display: block;
+    border: 0;
+    border-top: 0.01em solid #d0d0d0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+button{
+    border: none;
+    background: none;
+}
+.nav_bar img{
+    width: 34px;
+    height: 42px;
+}
+.main_head {
+    max-height: 72px;
+    align-items: center;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #716966;
+    font-size: 24px;
+}
+.nav_bar{
+    display: flex;
+    justify-content: space-between;
+}
+.left_nav{
+    padding: 20px 10px;
+    width:60%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.right_nav{
+    margin-left: auto;
+    padding: 20px 10px;
+    width:40%; 
+    display: flex;
+    justify-content: space-evenly;
+}
+.item {
+    height: 284px;
+    border: 0;
+    border-top: 0.01em solid #d7d7d7;
+}
+
+.items > :nth-child(odd) {
+    background-color: #FFFCF2;
+}
+
+.content-container {
+    padding: 10px 5px;
+    display: flex;
+}
+.left-content{
+    padding: 10px 30px;
+    width:80%;
+    border: 0;
+    border-right: 0.01em solid #d0d0d0;
+}
+.right-content{
+    padding: 10px 0px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.content-item {
+    padding-top: 10px;
+}
+.content-head {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.content-desc {
+    padding-top: 15px;
+    font-size: 10px;
+}
+
+.stats {
+    padding: 15px 15px 15px 0px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.stat-item {
+    font-size: 10px;
+}
+#stat-item-head {
+    font-size: 24px;
+    font-weight: 600;
+}
+.action-button p{
+    font-size: 8px;
+    color: #8D4337;
+}
