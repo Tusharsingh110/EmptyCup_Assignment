@@ -1,14 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600;800&display=swap');
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Chivo', sans-serif;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
 }
-
 hr {
     display: block;
     border: 0;
@@ -31,6 +28,8 @@ button{
     align-items: center;
     padding: 20px;
     display: flex;
+    font-weight: 600;
+    color: #716966;
     justify-content: space-between;
     font-size: 24px;
 }
@@ -100,7 +99,7 @@ button{
 .stat-item {
     font-size: 10px;
 }
-#stat-item-head {
+.stat-item-head {
     font-size: 24px;
     font-weight: 600;
 }
