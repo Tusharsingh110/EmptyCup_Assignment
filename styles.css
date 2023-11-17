@@ -5,6 +5,7 @@
     box-sizing: border-box;
     font-family: 'Chivo', sans-serif;
     line-height: normal;
+    /* max-width: 360px; */
 }
 hr {
     display: block;
@@ -20,8 +21,12 @@ button{
     background: none;
 }
 .nav_bar img{
-    width: 34px;
-    height: 42px;
+    width: 35px;
+    max-height: 40px;
+    /* height: 42px; */
+}
+.nav_bar svg {
+    width: 35px;
 }
 .main_head {
     max-height: 72px;
@@ -38,15 +43,15 @@ button{
     justify-content: space-between;
 }
 .left_nav{
-    padding: 20px 10px;
-    width:60%;
+    padding: 20px 20px;
+    width:50%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .right_nav{
     margin-left: auto;
     padding: 20px 10px;
-    width:40%; 
+    width:40%;  
     display: flex;
     justify-content: space-evenly;
 }
