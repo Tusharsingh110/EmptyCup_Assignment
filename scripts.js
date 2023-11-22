@@ -1,7 +1,11 @@
 let shortlisted_items = [];
 let shortlisted_btn = false;
 
+
+
 function toggleShortlistedlist() {
+  console.log('button pressed')
+
   shortlisted_btn = !shortlisted_btn;
   var shortlistIcon = document.getElementById('shortlistIcon');
   var paths = shortlistIcon.getElementsByTagName('path');
