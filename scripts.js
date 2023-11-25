@@ -154,11 +154,11 @@ function toggle_btn(index) {
   const slist_icon_id = document.getElementById(`slist-icon-${index}`);
   const indexToDelete = shortlisted_items.indexOf(index);
   if (indexToDelete === -1) {
-    shortlisted_items.push(index);
     slist_icon_id.src = './assets/svg/shortlisted.svg';
+    shortlisted_items.push(index);
   } else {
-    shortlisted_items.splice(indexToDelete, 1);
     slist_icon_id.src = './assets/svg/shortlist.svg';
+    shortlisted_items.splice(indexToDelete, 1);
   }
 }
 
