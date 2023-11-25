@@ -4,7 +4,6 @@ let shortlisted_btn = false;
 
 
 function toggleShortlistedlist() {
-  console.log('button pressed')
 
   shortlisted_btn = !shortlisted_btn;
   var shortlistIcon = document.getElementById('shortlistIcon');
@@ -147,7 +146,7 @@ function render_data(data) {
 
 function toggleShortlist(index) {
   toggle_btn(index);
-  fetchData();
+  if(shortlisted_btn) fetchData();
 }
 
 function toggle_btn(index) {
