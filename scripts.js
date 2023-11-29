@@ -1,5 +1,8 @@
+fetchData();
 let shortlisted_items = [];
+let hidden_items = [];
 let shortlisted_btn = false;
+let all_data = []
 const buttons = [
   {
     name: 'Details',
@@ -12,13 +15,13 @@ const buttons = [
   {
     name: 'Shortlist',
     imgsrc: './assets/svg/shortlist.svg',
+    imgsrc_on: './assets/svg/shortlisted.svg',
   },
   {
     name: 'Report',
     imgsrc: './assets/svg/report.svg',
   },
 ];
-fetchData();
 function fetchData() {
   fetch('https://empty-cup-backend.vercel.app/', {
     method: 'GET',
@@ -32,32 +35,21 @@ function fetchData() {
     })
     .catch((error) => console.error('Error fetching data:', error));
 }
-
-function toggleShortlistedlist() {
-  shortlisted_btn = !shortlisted_btn;
-  var shortlistIcon = document.getElementById('shortlistIcon');
-  if (shortlisted_btn) {
-    shortlistIcon.src='./assets/svg/shortlisted_items.svg'
-  } else {
-    shortlistIcon.src='./assets/svg/shortlist_items.svg'
-  }
-  fetchData();
-}
-
 function render_data(data) {
   const mainlist_id = document.getElementById('main-list');
   mainlist_id.innerHTML = '';
 
-  const items = data.length;
+  all_data=data;
+  var items = data.length;
 
   for (let i = 0; i < items; i++) {
-    if(shortlisted_btn && shortlisted_items.includes(i) === false) continue;
+    if(hidden_items.includes(i) || (shortlisted_btn && shortlisted_items.includes(i) === false)) continue;
     const newItem = document.createElement('li');
     newItem.classList.add('item');
-
-    const stars = Array.from({ length: 5 }, (_, j) => {
-      const imgpath = `./assets/svg/${data[i].rating >= 1 ? 'star_fill.svg' : data[i].rating > 0 ? 'half_star.svg' : 'star.svg'}`;
-      data[i].rating -= 1;
+    var rating = data[i].rating
+    const stars = Array.from({ length: 5 }, () => {
+      const imgpath = `./assets/svg/${rating >= 1 ? 'star_fill.svg' : rating > 0 ? 'half_star.svg' : 'star.svg'}`;
+      rating -= 1;
       return `<img src="${imgpath}">`;
     }).join('');
 
@@ -76,15 +68,11 @@ function render_data(data) {
 
     const rightChildren = `
       <div class="right-content action-button">
-        ${buttons.map(button => `
+        ${buttons.map(button =>`
           <button>
-            <img src="${
-              button.name === 'Shortlist' && shortlisted_items.includes(i)
-                ? './assets/svg/shortlisted.svg'
-                : button.imgsrc
-            }" 
-            id="${button.name === 'Shortlist' ? `slist-icon-${i}` : ''}"
-            ${button.name === 'Shortlist' ? `onclick="toggleShortlist(${i})"` : ''}>
+            <img src="${button.name === 'Shortlist' ? shortlisted_items.includes(i) ? button.imgsrc_on : button.imgsrc : button.imgsrc}"
+            id="btn-${button.name+i}"
+            onclick="${'handle'+button.name + '(' + i + ')'}">
             <p>${button.name}</p>
           </button>
         `).join('')}
@@ -106,8 +94,35 @@ function render_data(data) {
     mainlist_id.appendChild(newItem);
   }
 }
-function toggleShortlist(index) {
-  const slist_icon_id = document.getElementById(`slist-icon-${index}`);
+
+function toggleShortlistedlist() {
+  shortlisted_btn = !shortlisted_btn;
+  var shortlistIcon = document.getElementById('shortlistIcon');
+  if (shortlisted_btn) {
+    shortlistIcon.src='./assets/svg/shortlisted_items.svg'
+  } else {
+    shortlistIcon.src='./assets/svg/shortlist_items.svg'
+  }
+  render_data(all_data);
+}
+
+function handleContacts() {
+  hidden_items.length=0;
+  fetchData();
+}
+function handleDetails(index) {
+  console.log(`Handling details for item ${index}`);
+}
+
+function handleHide(index) {
+  // console.log(`Handling hide for item ${index}`);
+  console.log('here')
+  hidden_items.push(index)
+  render_data(all_data);
+}
+
+function handleShortlist(index) {
+  const slist_icon_id = document.getElementById(`btn-${buttons[2].name+index}`);
   const indexToDelete = shortlisted_items.indexOf(index);
   if (indexToDelete === -1) {
     slist_icon_id.src = './assets/svg/shortlisted.svg';
@@ -116,5 +131,9 @@ function toggleShortlist(index) {
     slist_icon_id.src = './assets/svg/shortlist.svg';
     shortlisted_items.splice(indexToDelete, 1);
   }
-  if(shortlisted_btn) fetchData();
+  if(shortlisted_btn) render_data(all_data);
+}
+
+function handleReport(index) {
+  console.log(`Handling report for item ${index}`);
 }
